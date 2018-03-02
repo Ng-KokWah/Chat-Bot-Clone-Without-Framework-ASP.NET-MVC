@@ -1,0 +1,104 @@
+﻿@model IEnumerable<ChatBot.Models.BotReply>
+@{
+    ViewBag.Title = "Bot";
+}
+
+<style>
+    #topbluebar {
+        background-color: blue;
+        width: 100%;
+        height: 50px;
+        color: white;
+    }
+
+    #userarea {
+        float: right;
+        margin-top: -20px;
+    }
+
+    #bot {
+        margin-top: 80px;
+    }
+
+    #messagearea {
+        height: 430px;
+        width: 100%;
+        overflow-y: auto;
+    }
+
+    input[type=text] {
+        height: 50px;
+        width: 800px;
+    }
+
+    table {
+        margin-top: 70px;
+    }
+</style>
+
+<div id="Botarea">
+    <div id="topbluebar">
+        <p style="float:left; font-size:17px; font-weight:600; margin-top:10px; margin-left:10px;">Chat</p>
+    </div>
+
+    <div id="messagearea">
+        <div id="userarea">
+            @if (Model != null)
+            {
+                for (var i = 0; i < Model.ToList().Count; i++)
+                {
+                    <table>
+                        <tr>
+                            <td style="border-style: solid; border-color: black; border-radius: 20px; width: 300px; height: 80px;">@Model.ToList()[i].usertyped</td>
+                        </tr>
+                        <tr>
+                            <td>You @@ @Model.ToList()[i].usertime</td>
+                        </tr>
+                    </table>
+                }
+            }
+        </div>
+
+        <div id="botarea">
+            @if (Model != null)
+            {
+                for (var i = 0; i < Model.ToList().Count; i++)
+                {
+                    <table id="bot" style="border-style: solid; border-color: black; border-radius: 20px; width: 450px; height: 80px;">
+                        @if (Model.ToList()[i].message.Contains('\\'))
+                        {
+                            string[] temp = Model.ToList()[i].message.Split('\\');
+                            for (int j = 0; j < temp.Length - 1; j++)
+                            {
+                                <tr>
+                                    <td>@temp[j]</td>
+                                </tr>
+                            }
+                            <tr>
+                                <td>@temp[temp.Length - 1]</td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr>
+                                <td>@Model.ToList()[i].message</td>
+                            </tr>
+                        }
+
+                    </table>
+                    <table style="margin-top:1px;">
+                        <tr>
+                            <td>KWBot @@ @Model.ToList()[i].timestamp</td>
+                        </tr>
+                    </table>
+                }
+            }
+        </div>
+    </div>
+
+    @using (Html.BeginForm("Bot", "Chatbot", FormMethod.Post))
+    {
+        <input type="text" id="msg" name="msg" placeholder="Type your message..." size="10" />
+        <input type="image" style="margin-top:5px;" height="35" width="35" src="~/Images/arrow.png" border="0" alt="Submit" />
+    }
+</div>
