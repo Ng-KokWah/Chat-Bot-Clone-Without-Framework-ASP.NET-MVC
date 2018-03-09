@@ -1,6 +1,6 @@
 # Chat-Bot-Clone-Without-Framework-ASP.NET-MVC
 
-After you download the app:
+After you download the project:
 1) Open ChatBot.sln to open the project in Visual Studio
 2) Open Views > ChatBot > Bot.cshtml
 3) Run the application
