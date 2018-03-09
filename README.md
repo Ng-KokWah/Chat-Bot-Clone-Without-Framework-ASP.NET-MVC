@@ -6,6 +6,6 @@ After you download the app:
 3) Run the application
 
 Alternatively:
--You can set the Bot.cshtml as the page to load
+1. You can set the Bot.cshtml as the page to load
 OR
--You can also run the app first and from the Index page click on Go To Bot in the navigation bar to navigate to the Bot.cshtml page
+2. You can also run the app first and from the Index page click on Go To Bot in the navigation bar to navigate to the Bot.cshtml page
